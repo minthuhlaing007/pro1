@@ -1,36 +1,19 @@
 <template>
-  <div v-if="showModal">
+  <teleport to=".modal" v-if="showModal">
     <Modal :theme='theme' @close="showModal=false">
-    <h1>Hello World</h1>
-    <h3>My name is John Doe</h3>
-    <p>Lorem ipsum dolor sit, amet consectetur, adipisicing elit. Ipsum ea amet minus, ullam earum omnis in, quidem, at beatae tenetur iure veritatis ad sapiente. Adipisci asperiores labore voluptatibus, commodi similique.</p>
-    <template v-slot:ul>
-      <ul>
-        <li>One </li>
-        <li>Two </li>
-        <li>Three </li>
-        <li>Four</li>
-      </ul>
-    </template>
+    <h1>Welcome to my Page</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro eligendi nam assumenda quisquam adipisci architecto tempora, eos rerum amet laboriosam, non, vero impedit quas totam vitae quos placeat omnis corrupti.</p>
   </Modal>
-  </div>
-  <div v-if="deleteModal">
-    <Modal :themeone='themeone' @delete="deleteModal=false">
-    <h1>Are you sure you want to Delete</h1>
-    <h3>Get the fuck out of my Page</h3>
-    <p>FUCK YOU</p>
-    <template v-slot:ul>
-      <ul>
-        <li>One </li>
-        <li>Two </li>
-        <li>Three </li>
-        <li>Four</li>
-      </ul>
-    </template>
+  </teleport>
+
+   <teleport to=".modal" v-if="deleteModal">
+    <Modal theme="delete" @close="deleteModal=false">
+    <h1>Are you sure you want to delete</h1>
+    <p>Bye see you soon</p>
   </Modal>
-  </div>
-  <button @click="showModal=true">Login Modal</button>
-  <button @click="deleteModal=true">Delete Modal</button>
+  </teleport>
+  <button @click="showModal=true">Show Modal</button>
+  <button @click="deleteModal = true">Delete Modal</button>
 </template>
 
 <script>
@@ -38,10 +21,9 @@ import Modal from "./components/Modal.vue"
 export default {
   data(){
     return{
-      theme:"success",
       showModal:false,
-      themeone:"delete",
-      deleteModal: false
+      theme:"success",
+      deleteModal:false,
     }
   },
 components:{
